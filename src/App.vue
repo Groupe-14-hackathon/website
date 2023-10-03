@@ -1,10 +1,15 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import Artistes from './components/Artistes.vue'
+
+
 </script>
 
 <template>
   <HelloWorld />
+  <Artistes/>
 </template>
+
 
 <style scoped>
 .logo {
