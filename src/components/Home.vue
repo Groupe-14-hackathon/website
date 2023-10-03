@@ -1,21 +1,9 @@
-<template>
-    <header>
-        <nav>
-            <div class="logo-container">
-                <img class="imgLogo" src="../assets/imgYFest.png">
-            </div>
-            <ul class="menu">
-                <li><a href="home">>Home</a></li>
-                <li><a href="artistes">>Artist</a></li>
-                <li><a href="map">>Map</a></li>
-                <div class="billeterie">
-                    <li><a href="billeterie">TICKETING</a></li>
-                </div>
-                <li><a href="Login"><img class="imgCompte" src="../assets/imgCompte.png"></a></li>
-            </ul>
-        </nav>
-    </header>
+<script setup>
+import Header from './Header.vue';
+</script>
 
+<template>
+  <Header></Header>
     <main>
         COMPILATION <br>
         DE<br>

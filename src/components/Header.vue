@@ -1,3 +1,4 @@
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 
@@ -115,3 +116,32 @@ div[class*=box] {
     opacity: 0;
     transform: scale(0.1, 1);
 }
+</style>
+
+<template>
+    <div id="container-allheader">
+        <div id="container-header">
+            <div id="contaier-leftheader">
+                <img class="img-logo-yfestival" src="/static/ressources/assets/yfestival-logo.png">
+            </div>
+            <div id="container-rightheader">
+                <div id="container-navbar">
+                    <div class="home">> Home</div>
+                </div>
+                <div id="container-navbar">
+                    <div class="artist">> Artist</div>
+                </div>
+                <div id="container-navbar">
+                    <div class="map">> Map</div>
+                </div>
+                <div id="container-ticketing">
+                    <div class="box-1">
+                        <div class="btn btn-one">
+                            <span>TICKETING</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
