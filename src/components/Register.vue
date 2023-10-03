@@ -1,5 +1,6 @@
 <script setup>
 import { reactive } from 'vue'
+import Header from './Header.vue';
 
 const host = 'http://localhost:3000'
 
@@ -55,6 +56,7 @@ const password_complexity = ({ password }) => {
 
 </script>
 <template>
+    <Header></Header>
     <div class="flex justify-center items-center w-full h-screen">
         <div class="border-slate-100 border rounded-md p-5 shadow-xl space-y-10 w-[30%]">
             <h1 class="text-black text-xl">Register / SigIn</h1>

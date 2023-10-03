@@ -122,17 +122,28 @@ div[class*=box] {
     <div id="container-allheader">
         <div id="container-header">
             <div id="contaier-leftheader">
-                <img class="img-logo-yfestival" src="/static/ressources/assets/yfestival-logo.png">
+                <img class="img-logo-yfestival" src="../assets/yfestival-logo.png">
             </div>
             <div id="container-rightheader">
                 <div id="container-navbar">
-                    <div class="home">> Home</div>
+                    <div 
+                    v-on:click="go('/')"
+                    class="home">> Home</div>
                 </div>
                 <div id="container-navbar">
-                    <div class="artist">> Artist</div>
+                    <div 
+                    v-on:click="go('artistes')"
+                    class="artist">> Artist</div>
                 </div>
                 <div id="container-navbar">
-                    <div class="map">> Map</div>
+                    <div 
+                    v-on:click="go('map')"
+                    class="map">> Map</div>
+                </div>
+                <div id="container-navbar">
+                    <div 
+                    v-on:click="go('login')"
+                    class="map">> Login</div>
                 </div>
                 <div id="container-ticketing">
                     <div class="box-1">
@@ -145,3 +156,14 @@ div[class*=box] {
         </div>
     </div>
 </template>
+
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+const go = (route) => {
+    router.push(route)
+}
+
+</script>

@@ -30,8 +30,8 @@ import Header from './Header.vue';
 }
 
 main {
-    background-color: #E86252;
-    height: 50%;
+  background-color: #E86252;
+  height: 86.5vh;
 }
 
 .billeterie {
