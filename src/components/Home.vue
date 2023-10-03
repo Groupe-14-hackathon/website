@@ -3,8 +3,8 @@
         <h1 class="titre" >YFestival 2023</h1>
         <nav>
             <ul class="menu">
-                <li><a href="./H">Home</a></li>
-                <li><a href="./Artistes.vue">Artist</a></li>
+                <li><a href="home">Home</a></li>
+                <li><a href="artistes">Artist</a></li>
                 <li><a href="#">Map</a></li>
                 <li><a href="#">Billetterie</a></li>
                 <li><a href="#"><img class ="imgCompte" src="../assets/imgCompte.png"></a></li>
