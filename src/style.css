@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
@@ -192,3 +193,8 @@ button:focus-visible {
 	transform: translateX(-200px);
 	opacity: 0;
 }
+=======
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+>>>>>>> 3459aef (adding login and register)
