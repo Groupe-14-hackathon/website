@@ -5,8 +5,7 @@ import login from './components/Login.vue'
 import artistes from './components/Artistes.vue'
 import billeterie from './components/billeterie.vue'
 // import map from './components/map.vue'
-
-
+import register from './components/Register.vue'
 // import p404 from './views/404.vue'
 
 export default createRouter({
@@ -15,6 +14,10 @@ export default createRouter({
     {
       path: '/',
       component: home,
+    },
+    {
+        path: '/home',
+        redirect: '/'
     },
     {
         path: '/login',
@@ -28,10 +31,15 @@ export default createRouter({
       path: '/billeterie',
       component: billeterie,
   },
-//   {
-//     path: '/map',
-//     component: map,
-// },
+/*   
+    {
+     path: '/map',
+     component: map,
+    },*/
+    {
+        path: '/register',
+        component: register,
+    },
     /*
     {
       path: '/:catchAll(.*)',
