@@ -6,7 +6,7 @@ import artistes from './components/Artistes.vue'
 import billeterie from './components/billeterie.vue'
 import map from './components/map.vue'
 import register from './components/Register.vue'
-// import p404 from './views/404.vue'
+import p404 from './components/404.vue'
 
 export default createRouter({
   history: createWebHistory(),
@@ -39,11 +39,9 @@ export default createRouter({
         path: '/register',
         component: register,
     },
-    /*
     {
       path: '/:catchAll(.*)',
       component: p404,
     },
-    */
   ],
 })

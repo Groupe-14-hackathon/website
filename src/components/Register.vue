@@ -1,6 +1,13 @@
 <script setup>
 import { reactive } from 'vue'
 import Header from './Header.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+const go = (route) => {
+    router.push(route)
+}
 
 const host = 'http://localhost:3000'
 
@@ -87,6 +94,7 @@ const password_complexity = ({ password }) => {
                 <div>
                     <label for=""></label>
                     <button
+                    type="submit"
                     :disabled="pwd.isdisabled"
                     :class="pwd.class"
                     v-on:click="register({ email: mail, password: secondpassword })"
@@ -95,6 +103,11 @@ const password_complexity = ({ password }) => {
                 </div>
                 <div>
                     <p> {{ response.message  }}</p>
+                </div>
+                <div>
+                    <p>You already have an account ? Login 
+                        <a v-on:click="go('login')"
+                        class="text-blue-700 hover:text-blue-800 cursor-pointer">here</a></p>
                 </div>
             </div>
         </div>

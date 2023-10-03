@@ -146,7 +146,9 @@ div[class*=box] {
                     class="map">> Login</div>
                 </div>
                 <div id="container-ticketing">
-                    <div class="box-1">
+                    <div 
+                    v-on:click="go('billeterie')"
+                    class="box-1">
                         <div class="btn btn-one">
                             <span>TICKETING</span>
                         </div>

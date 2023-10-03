@@ -4,13 +4,11 @@ import Header from './Header.vue';
 
 <template>
     <Header></Header>
-    <div class="title">artistes</div>
+    <div class="title">artists</div>
 </template>
 
 <style>
 .title {
     color: black;
-    font-size: larger;
-    font-weight: bold;
 }
 </style>
