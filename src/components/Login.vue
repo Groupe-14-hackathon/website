@@ -26,9 +26,11 @@ const login = ({ email, password }) => {
     }).then((res) => {
         res.json().then(({ message, data, token }) => {
             response.message = message
-            VueCookies.set('token' , token, "1h") 
-            VueCookies.set('id' , data, "1h") 
-            go('dashboard')
+            if(token && data) {
+                VueCookies.set('token' , token, "1h") 
+                VueCookies.set('id' , data, "1h") 
+                go('dashboard')
+            }
         })
     })
     .catch((err) => {

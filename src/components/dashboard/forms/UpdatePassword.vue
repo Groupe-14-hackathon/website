@@ -44,14 +44,14 @@ const update_password = ({ newPassword, password }) => {
                     </div>
                     <div class="flex flex-col items-center">
                         <label class="w-full" for="email">Confirm new password</label>
-                        <input class="w-full border border-red-500 rounded-md" type="email">
+                        <input v-model="newPassword" class="w-full border border-red-500 rounded-md" type="email">
                     </div>
                     <div class="flex flex-col items-center">
                         <label class="w-full" for="password">Current Password</label>
-                        <input class="w-full border border-red-500 rounded-md" type="password">
+                        <input v-model="password" class="w-full border border-red-500 rounded-md" type="password">
                     </div>
                     <div>
-                        <button v-on:click="update_password({ email, password })"
+                        <button v-on:click="update_password({ newPassword, password })"
                         class="p-1 border rounded-md border-red-500 hover:bg-red-500 transition-all" type="submit">Update</button>
                     </div>
                     <div>
