@@ -1,9 +1,8 @@
 <script setup>
 import { reactive } from 'vue'
 import { useStore } from 'vuex'
+import VueCookies from 'vue-cookies'
 
-const store = useStore()
-const token = store.state.token
 const host = 'http://localhost:3000'
 
 const response = reactive({
@@ -11,8 +10,7 @@ const response = reactive({
 })
 
 const delete_account = async ({ email, password }) => {
-    console.log(store.state.token);
-
+    const token = VueCookies.get('token')
     fetch(`${host}/api/removeuser`, {
         method: "POST",
         headers: {
