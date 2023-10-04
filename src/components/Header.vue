@@ -122,7 +122,11 @@ div[class*=box] {
     <div id="container-allheader">
         <div id="container-header">
             <div id="contaier-leftheader">
+                <div 
+                    v-on:click="go('/')"
+                    class="home">
                 <img class="img-logo-yfestival" src="../assets/yfestival-logo.png">
+                </div>
             </div>
             <div id="container-rightheader">
                 <div id="container-navbar">
