@@ -8,8 +8,13 @@ const response = reactive({
     message: null,
 })
 
+const mail = reactive({
+    message: null,
+    isdisabled: true,
+    class: "cursor-not-allowed"
+})
+
 const update_email = ({ newEmail, password }) => {
-    console.log(store.state.token);
     const token = VueCookies.get('token')
     const id = VueCookies.get('id')
 
@@ -31,6 +36,21 @@ const update_email = ({ newEmail, password }) => {
     })
 }
 
+const check_mail = ({ first, second }) => {
+    if(second === undefined) return false
+    if(first === second) {
+        mail.message = "Emails are matching !"
+        mail.isdisabled = false
+        mail.class = "cursor-pointer"
+        return true
+    } else {
+        mail.message = "matching error !"
+        mail.isdisabled= true
+        mail.class = "cursor-not-allowed"
+        return false
+    }
+}
+
 </script>
 
 
@@ -42,19 +62,34 @@ const update_email = ({ newEmail, password }) => {
                 <div class="flex flex-col space-y-5 w-[50%]">
                     <div class="flex flex-col items-center">
                         <label class="w-full" for="email">New email</label>
-                        <input class="w-full border border-red-500 rounded-md" type="email">
+                        <input
+                        required
+                        v-model="first"
+                        v-on:keyup="() => check_mail({ first, second: email })"
+                        class="w-full border border-red-500 rounded-md" type="email">
                     </div>
                     <div class="flex flex-col items-center">
                         <label class="w-full" for="email">Confirm new email</label>
-                        <input class="w-full border border-red-500 rounded-md" type="email">
+                        <input 
+                        required
+                        v-model="email" 
+                        v-on:keyup="() => check_mail({ first, second: email })"
+                        class="w-full border border-red-500 rounded-md" type="email">
                     </div>
                     <div class="flex flex-col items-center">
                         <label class="w-full" for="password">Current Password</label>
-                        <input class="w-full border border-red-500 rounded-md" type="password">
+                        <input required v-model="password" class="w-full border border-red-500 rounded-md" type="password">
                     </div>
                     <div>
-                        <button v-on:click="update_email({ email, password })"
-                        class="p-1 border rounded-md border-red-500 hover:bg-red-500 transition-all" type="submit">Update</button>
+                        {{ mail.message }}
+                    </div>
+                    <div>
+                        <button 
+                        :disabled="mail.isdisabled"
+                        :class="mail.class"
+                        v-on:click="update_email({ newEmail: email, password })"
+                        class="p-1 border rounded-md border-red-500 hover:bg-red-500 transition-all" 
+                        type="submit">Update</button>
                     </div>
                     <div>
                         {{ response.message }}

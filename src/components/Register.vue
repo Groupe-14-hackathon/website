@@ -66,6 +66,12 @@ const register = ({ email, password }) => {
 }
 
 const password_check = ({ first, second }) => {
+    if(!password_complexity(first)) {
+        pwd.password_message = "the password is weak (Minimum eight characters, at least one letter and one number)"
+        pwd.isdisabled= true
+        pwd.class = "cursor-not-allowed"
+        return false
+    } pwd.password_message = "the password is strong !"
     if(second === undefined) return false
     if(first === second) {
         pwd.password_message = "the passwords are matching !"
@@ -75,14 +81,14 @@ const password_check = ({ first, second }) => {
     } else {
         pwd.password_message = "matching error !"
         pwd.isdisabled= true
-        pwd.class = "cursor-not-allowed	"
+        pwd.class = "cursor-not-allowed"
         return false
     }
 }
 
-const password_complexity = ({ password }) => {
-    if(password.length < 8) return false
-    else return true
+const password_complexity = (password) => {
+    const strong = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+    return strong.test(password)
 }
 
 </script>
