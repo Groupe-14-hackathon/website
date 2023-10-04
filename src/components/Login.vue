@@ -24,9 +24,10 @@ const login = ({ email, password }) => {
         },
         body: JSON.stringify({ email, password }),
     }).then((res) => {
-        res.json().then(({ message, token }) => {
+        res.json().then(({ message, data, token }) => {
             response.message = message
             VueCookies.set('token' , token, "1h") 
+            VueCookies.set('id' , data, "1h") 
             go('dashboard')
         })
     })
