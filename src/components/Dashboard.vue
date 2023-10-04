@@ -1,5 +1,7 @@
 <script setup>
 import { reactive } from 'vue'
+import VueCookies from 'vue-cookies'
+import { useRouter } from 'vue-router';
 
 import Header from './Header.vue';
 import Account from './dashboard/Account.vue'
@@ -10,6 +12,13 @@ import Travel from './dashboard/Travel.vue'
 const component = reactive({
     current: Account,
 })
+
+const router = useRouter()
+
+const disconnect = () => {
+    VueCookies.remove('token')
+    router.push('login')
+}
 
 </script>
 
@@ -40,6 +49,11 @@ const component = reactive({
                     <a 
                     v-on:click="component.current = Contact"
                     class="cursor-pointer border-black hover:border-b">> Contact</a>
+                </div>
+                <div class="pl-5">
+                    <a 
+                    v-on:click="disconnect()"
+                    class="cursor-pointer border-black hover:border-b">> Disconnect</a>
                 </div>
             </section>
             <section class="w-full h-full">

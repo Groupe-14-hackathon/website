@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
-
+import { createRouter, createWebHistory, useRouter } from 'vue-router'
+import VueCookies from 'vue-cookies'
 import home from './components/Home.vue'
 import login from './components/Login.vue'
 import artistes from './components/Artistes.vue'
@@ -8,6 +8,24 @@ import map from './components/map.vue'
 import register from './components/Register.vue'
 import p404 from './components/404.vue'
 import dashboard from './components/Dashboard.vue'
+
+const auth = () => {
+    const router = useRouter()
+    const token = VueCookies.get('token')
+    if(token == null) {
+        router.push('login')
+        return false
+    } return true
+}
+
+const isConnected = () => {
+    const router = useRouter()
+    const token = VueCookies.get('token')
+    if(token == null) {
+        return true
+    } router.push('dashboard')
+
+}
 
 export default createRouter({
     history: createWebHistory(),
@@ -23,6 +41,7 @@ export default createRouter({
         {
             path: '/login',
             component: login,
+            beforeEnter: [isConnected]
         },
         {
             path: '/artistes',
@@ -43,6 +62,7 @@ export default createRouter({
         {
             path: '/dashboard',
             component: dashboard,
+            beforeEnter: [auth]
         },
         {
             path: '/:catchAll(.*)',

@@ -1,8 +1,9 @@
 <script setup>
 import { reactive } from 'vue'
-import Header from './Header.vue';
 import { useRouter } from 'vue-router';
-
+import Header from './Header.vue';
+import VueCookies from 'vue-cookies';
+    
 const router = useRouter()
 
 const go = (route) => {
@@ -13,20 +14,20 @@ const host = 'http://localhost:3000'
 
 const response = reactive({
     message: null,
-    token: null
 })
 
-const login = ({ username, password }) => {
-    fetch(host + "/api/login", {
+const login = ({ email, password }) => {
+    fetch(`${host}/api/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
     }).then((res) => {
         res.json().then(({ message, token }) => {
             response.message = message
-            response.token = token
+            VueCookies.set('token' , token, "1h") 
+            go('dashboard')
         })
     })
     .catch((err) => {
@@ -46,7 +47,7 @@ const login = ({ username, password }) => {
                 <div class="flex flex-col">
                     <label for="">Username</label>
                     <input 
-                    v-model="username"
+                    v-model="email"
                     class="border border-black rounded-md bg-white p-1" type="text">
                 </div>
                 <div class="flex flex-col">
@@ -57,7 +58,7 @@ const login = ({ username, password }) => {
                 </div>
                 <div>
                     <button 
-                    v-on:click="login({ username, password })"
+                    v-on:click="login({ email, password })"
                     class="border border-black p-1 rounded-md hover:bg-black hover:text-white transition-all ease-in-out duration-300">Connect</button>
                 </div>
                 <div>
