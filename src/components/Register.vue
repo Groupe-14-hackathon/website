@@ -2,6 +2,8 @@
 import { reactive } from 'vue'
 import Header from './Header.vue';
 import { useRouter } from 'vue-router';
+import VueCookies from 'vue-cookies';
+
 
 const router = useRouter()
 
@@ -22,6 +24,27 @@ const pwd = reactive({
     class: "cursor-not-allowed"
 })
 
+const login = ({ email, password }) => {
+    fetch(`${host}/api/login`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+    }).then((res) => {
+        res.json().then(({ message, token }) => {
+            response.message = message
+            VueCookies.set('token' , token, "1h") 
+            go('dashboard')
+        })
+    })
+    .catch((err) => {
+        err.json().then(({ message }) => {
+            response.message = message
+        })
+    })
+}
+
 const register = ({ email, password }) => {
     fetch(host + "/api/register", {
         method: "POST",
@@ -32,6 +55,7 @@ const register = ({ email, password }) => {
     }).then((res) => {
         res.json().then(({ message }) => {
             response.message = message
+            login({ email, password })
         })
     })
     .catch((err) => {

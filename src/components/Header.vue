@@ -1,3 +1,19 @@
+<script setup>
+import { useRouter } from 'vue-router';
+import { reactive } from 'vue'
+import VueCookies from 'vue-cookies'
+
+const router = useRouter()
+const data = reactive({
+    token: VueCookies.get('token'),
+})
+
+const go = (route) => {
+    router.push(route)
+}
+
+</script>
+
 <template>
     <div id="container-allheader">
         <div id="container-header">
@@ -24,7 +40,12 @@
                     v-on:click="go('map')"
                     class="map">> Map</div>
                 </div>
-                <div id="container-navbar">
+                <div v-if="data.token" id="container-navbar">
+                    <div 
+                    v-on:click="go('dashboard')"
+                    class="map">> Account</div>
+                </div>
+                <div v-else id="container-navbar">
                     <div 
                     v-on:click="go('login')"
                     class="map">> Login</div>
@@ -42,14 +63,3 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import { useRouter } from 'vue-router';
-
-const router = useRouter()
-
-const go = (route) => {
-    router.push(route)
-}
-
-</script>
