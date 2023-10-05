@@ -63,7 +63,7 @@ const update_password = ({ newPassword, password }) => {
                 <h1 class="text-center my-10 text-2xl">Update password</h1>
                 <form 
                 @submit="update_password({ newPassword, password })"
-                method="post"
+                onsubmit="return false"
                 class="flex flex-col space-y-5 w-[50%]">
                     <div class="flex flex-col items-center">
                         <label class="w-full" for="email">New password</label>

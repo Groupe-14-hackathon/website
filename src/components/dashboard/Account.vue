@@ -16,17 +16,17 @@ const forms = reactive({
         <div class="flex w-full justify-center space-x-10">
             <a 
             v-on:click="forms.current = UpdateEmail"
-            class="w-[20%] flex justify-center border border-red-500 rounded-md cursor-pointer hover:bg-red-500">
+            class="w-[20%] flex justify-center border border-red-500 rounded-md cursor-pointer hover:bg-red-500 hover:font-medium">
                 Change email
             </a>
             <a 
             v-on:click="forms.current = UpdatePassword"
-            class="w-[20%] flex justify-center border border-red-500 rounded-md cursor-pointer hover:bg-red-500">
+            class="w-[20%] flex justify-center border border-red-500 rounded-md cursor-pointer hover:bg-red-500 hover:font-medium">
                 Change password
             </a>
             <a
             v-on:click="forms.current = DeleteAccount"
-            class="w-[20%] flex justify-center border border-red-500 rounded-md cursor-pointer hover:bg-red-500">
+            class="w-[20%] flex justify-center border border-red-500 rounded-md cursor-pointer hover:bg-red-500 hover:font-medium">
                 Delete account
             </a>
         </div>

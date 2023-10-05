@@ -39,10 +39,7 @@ const delete_account = ({ password }) => {
                 <h1 class="text-center my-10 text-2xl">Delete account</h1>
                 <form 
                 @submit="delete_account({ password })"
-                action=""
-                name="del"
-                target="_blank"
-                method="post"
+                onsubmit="return false"
                 class="flex flex-col space-y-5 w-[50%]">
                     <div class="flex flex-col items-center">
                         <p class="text-center text-red-500">Warning, this operation can't be undone. All your data will be
@@ -50,7 +47,7 @@ const delete_account = ({ password }) => {
                     </div>
                     <div class="flex flex-col items-center">
                         <label class="w-full" for="password">Current Password</label>
-                        <input required v-model="password" class="w-full border border-red-500 rounded-md" type="password">
+                        <input required v-model="password" class="w-full border border-red-500 rounded-md py-1 px-2" type="password">
                     </div>
                     <div>
                         <input 

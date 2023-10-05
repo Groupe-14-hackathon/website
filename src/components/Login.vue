@@ -44,25 +44,31 @@ const login = ({ email, password }) => {
 <template>
     <Header></Header>
     <div class="flex justify-center items-center w-full h-screen">
-        <div class="border-slate-100 border rounded-md p-5 shadow-xl space-y-10 w-[30%]">
+        <div class="border border-black rounded-md p-5 shadow-xl space-y-10 w-[30%]">
             <h1 class="text-slate-800 text-xl">Login</h1>
-            <div class="flex flex-col space-y-5 bg-white text-black">
+            <form 
+            @submit="login({ email, password })"
+            onsubmit="return false"
+            class="flex flex-col space-y-5 text-black">
                 <div class="flex flex-col">
                     <label for="">Username</label>
                     <input 
+                    required
                     v-model="email"
                     class="border border-black rounded-md bg-white p-1" type="text">
                 </div>
                 <div class="flex flex-col">
                     <label class="" for="">Password</label>
                     <input 
+                    required
                     v-model="password"
                     class="border border-black rounded-md bg-white p-1" type="password">
                 </div>
                 <div>
                     <button 
-                    v-on:click="login({ email, password })"
-                    class="border border-black p-1 rounded-md hover:bg-black hover:text-white transition-all ease-in-out duration-300">Connect</button>
+                    type="submit"
+                    class="border border-black p-1 rounded-md hover:bg-black hover:text-white transition-all ease-in-out duration-300"
+                    >Connect</button>
                 </div>
                 <div>
                     <p>{{ response.message }}</p>
@@ -72,7 +78,7 @@ const login = ({ email, password }) => {
                         <a v-on:click="go('register')"
                         class="text-blue-700 hover:text-blue-800 cursor-pointer">here</a></p>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </template>

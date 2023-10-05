@@ -55,7 +55,7 @@ const check_mail = ({ first, second }) => {
                 <h1 class="text-center my-10 text-2xl">Update email</h1>
                 <form 
                 @submit="update_email({ newEmail: email, password })"
-                method="post"
+                onsubmit="return false"
                 class="flex flex-col space-y-5 w-[50%]">
                     <div class="flex flex-col items-center">
                         <label class="w-full" for="email">New email</label>
