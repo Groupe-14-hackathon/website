@@ -9,12 +9,13 @@
     font-family: 'Kodchasan', sans-serif;
 }
 
+body {
+    background-color: #FFEAE7;
+}
 #container-allheader {
-    border: 1px solid red;
     padding: 15px;
 	position: absolute;
 	width: 100%;
-	background-color: white;
 }
 
 #container-header {
@@ -50,7 +51,7 @@ div[class*=box] {
 }
 
 .box-1 {
-    background-color: #EE2677;
+    background-color: #EE2677; 
 }
 
 .btn {
@@ -120,3 +121,162 @@ div[class*=box] {
     opacity: 0;
     transform: scale(0.1, 1);
 }
+
+/* ---- PAGE ARTISTES ---- */
+#container-titleartist {
+    padding-top: 80px;
+    display: flex;
+    justify-content: center;
+}
+.touring-artist {
+    font-size: 20px;
+    font-weight: bold;
+}
+#container-allcarteartist {
+    padding-top: 40px;
+}
+
+/* MODIF CARTE ARTISTE ROSE */
+#carteartistpink {
+    box-shadow: 5px 5px 5px rgb(160, 159, 159);
+    background-color: #E87EA1;
+    margin-bottom: 40px;
+    margin-left: 40px;
+    width: 70%;
+    padding: 20px;
+    display: flex;
+    border-radius: 0.4em;
+    cursor: pointer;
+}
+#pictureartistpink {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imagepink {
+    display: flex;
+}
+.infoartistpink {
+    font-weight: bold;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* MODIF CARTE TAUPE + QUELQUES MODIF DU PINK*/
+#container-carteartistaupe {
+    display: flex;
+    justify-content: flex-end;
+}
+#carteartistaupe {
+    box-shadow: 5px 5px 5px rgb(160, 159, 159);
+    margin-bottom: 40px;
+    background-color: #EBB3A9;
+    margin-right: 40px;
+    display: flex;
+    width: 70%;
+    padding: 20px;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+#container-titleotherartist {
+    display: flex;
+    justify-content: center;
+}
+
+/* MODIF 3 CARTES */
+#container-allcard {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#cartes-pink {
+    cursor: pointer;
+    box-shadow: 5px 5px 5px rgb(160, 159, 159);
+    padding: 20px;
+    background-color: #E87EA1;
+    border-radius: 0.3rem;
+    margin: 20px;
+    width: 25%;
+}
+#container-name {
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+}
+.name {
+    font-weight: bold;
+    font-size: 20px;
+}
+#pictures-3cartes {
+    display: flex;
+    justify-content: center;
+}
+#cartes-taupe {
+    box-shadow: 5px 5px 5px rgb(160, 159, 159);
+    cursor: pointer;
+    padding: 20px;
+    background-color: #EBB3A9;
+    border-radius: 0.3rem;
+    margin: 20px;
+    width: 25%;
+}
+
+
+
+/* RESPONSIVE PAGE ARTIST */
+@media screen and (max-width : 700px) {
+    /* MODIF RESPONSIVE TOURNING ARTISTES */
+    #container-carteartistpink {
+        display: flex;
+        justify-content: center;
+    }
+    #carteartistpink {
+        display: flex;
+        align-items: center;
+        width: 90%;
+        margin-left: 0px;
+    }
+    .infoartistpink {
+        margin-left: 20px;
+    }  
+    #carteartistaupe {
+        width: 90%;
+        display: flex;
+        align-items: center;
+        margin-right: 0px;
+    }
+}
+
+@media screen and (max-width : 900px) {
+    /* MODIF RESPONSIVE OTHER ARTISTES */
+    #container-allcard {
+        display: flex;
+        flex-direction: column ;
+        align-items: center;
+        width: 100%;
+        margin-top: 20px;
+    }
+    #pictures-3cartes {
+        display: flex;
+        justify-content: center;
+    }
+    #container-carteartistaupe {
+        display: flex;
+        justify-content: center;
+    }
+    .picturecartes {
+        width: 50%;
+    }
+    #cartes-pink {
+        width: 70%;
+    }
+    #cartes-taupe {
+        width: 70%;
+    }
+
+}
+
+/* ---- FIN PAGE ARTISTES ---- */
