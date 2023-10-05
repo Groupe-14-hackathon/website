@@ -1,7 +1,212 @@
 @import url('https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+@media screen and (max-width : 700px) {
+    .artist,
+    .map,
+    .login {
+        margin-left: 20%;
+        margin-top: 5%;
+        cursor: pointer;
+    }
+
+    .home {
+        margin-left: 20%;
+        cursor: pointer;
+    }
+
+    .login {
+        margin-bottom: 10%;
+    }
+
+    div[class*=box] {
+        width: 170px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #container-leftheader {
+        justify-content: flex-end;
+    }
+
+    #container-rightheader {
+        display: none;
+
+    }
+
+    #container-navbar {
+        padding-right: 20px;
+    }
+
+    body {
+        font-family: "Poppins", sans-serif;
+    }
+
+    .container {
+        max-width: 1050px;
+        width: 90%;
+        margin: auto;
+    }
+
+    .navbar {
+        width: 100%;
+        box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
+    }
+
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 62px;
+    }
+
+    .navbar .menu-items {
+        display: flex;
+        background-color: #FFEAE7;
+    }
+
+    .navbar .nav-container li {
+        list-style: none;
+    }
+
+    .navbar .nav-container a {
+        text-decoration: none;
+        color: #0e2431;
+        font-weight: 500;
+        font-size: 1.2rem;
+        padding: 0.7rem;
+    }
+
+    .navbar .nav-container a:hover {
+        font-weight: bolder;
+    }
+
+    .nav-container {
+        display: block;
+        height: 60px;
+        justify-content: space-around;
+        align-items: flex-end;
+    }
+
+    .nav-container .checkbox {
+        position: absolute;
+        display: block;
+        height: 32px;
+        width: 32px;
+        top: 20px;
+        left: 20px;
+        z-index: 5;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .nav-container .hamburger-lines {
+        display: block;
+        height: 26px;
+        width: 32px;
+        position: absolute;
+        top: 17px;
+        left: 20px;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .nav-container .hamburger-lines .line {
+        display: block;
+        height: 4px;
+        width: 100%;
+        border-radius: 10px;
+        background: #0e2431;
+    }
+
+    .nav-container .hamburger-lines .line1 {
+        transform-origin: 0% 0%;
+        transition: transform 0.4s ease-in-out;
+    }
+
+    .nav-container .hamburger-lines .line2 {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .nav-container .hamburger-lines .line3 {
+        transform-origin: 0% 100%;
+        transition: transform 0.4s ease-in-out;
+    }
+
+    .navbar .menu-items {
+        display: none;
+        padding-top: 70px;
+        box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+        height: 100vh;
+        width: 67%;
+        transform: translate(-150%);
+        display: flex;
+        flex-direction: column;
+        margin-left: -40px;
+        padding-left: 50px;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .navbar .menu-items li {
+        margin-bottom: 1.2rem;
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    .logo {
+        position: absolute;
+        top: 5px;
+        left: 125px;
+        font-size: 1.2rem;
+        color: #0e2431;
+    }
+
+    .logoBurger {
+        position: absolute;
+        top: 15px;
+        left: 90px;
+        color: #0e2431;
+    }
+
+    .img-logo-yfestival {
+        display: none;
+    }
+
+
+    .img-logo-yfestival-burger {
+        width: 150px;
+        cursor: pointer;
+        justify-content: flex-end;
+    }
+
+    .nav-container input[type="checkbox"]:checked~.menu-items {
+        transform: translateX(0);
+    }
+
+    .nav-container input[type="checkbox"]:checked~.hamburger-lines .line1 {
+        transform: rotate(45deg);
+    }
+
+    .nav-container input[type="checkbox"]:checked~.hamburger-lines .line2 {
+        transform: scaleY(0);
+    }
+
+    .nav-container input[type="checkbox"]:checked~.hamburger-lines .line3 {
+        transform: rotate(-45deg);
+    }
+
+    .nav-container input[type="checkbox"]:checked~.logo {
+        display: none;
+    }
+}
 
 * {
     padding: 0;
@@ -17,37 +222,55 @@ body {
 	position: absolute;
 	width: 100%;
 }
+@media screen and (min-width : 701px) {
 
-#container-header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
+    .navbar .menu-items {
+        display: none;
+    }
 
-.img-logo-yfestival {
-    width: 150px;
-    cursor: pointer;
-}
+    #container-allheader {
+        border: 1px solid red;
+        padding: 15px;
+        position: absolute;
+        width: 100%;
+        background-color: white;
+    }
 
-#container-rightheader {
-    width: auto;
-    display: flex;
-    align-items: center;
+    #container-header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
 
-}
+    .img-logo-yfestival {
+        width: 150px;
+        cursor: pointer;
+    }
 
-#container-navbar {
-    padding-right: 20px;
-    cursor: pointer;
-}
+    .img-logo-yfestival-burger {
+        display: none;
+    }
+
+    #container-rightheader {
+        width: auto;
+        display: flex;
+        align-items: center;
+
+    }
+
+    #container-navbar {
+        padding-right: 20px;
+        cursor: pointer;
+    }
 
 
-div[class*=box] {
-    height: 33.33%;
-    width: 170px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    div[class*=box] {
+        height: 33.33%;
+        width: 170px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .box-1 {
