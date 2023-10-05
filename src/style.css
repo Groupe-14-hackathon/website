@@ -555,5 +555,57 @@ body {
     }
 
 }
-
 /* ---- FIN PAGE ARTISTES ---- */
+
+/* ---- DEBUT PAGE MAP ---- */
+
+/* PARTIE MAP */
+#container-allmap {
+    height: 40%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+#container-titlemap {
+    padding-top: 55px;
+    display: flex;
+    justify-content: center;
+}
+#container-map {
+    display: flex;
+    justify-content: center;
+    width: 40%;
+}
+.map {
+    width: 100%;
+    height: 100%;
+    margin-right: 20px;
+    border-radius: 0.3rem;
+}
+.titlemap {
+    font-weight: bold;
+    font-size: 22px;
+}
+#container-infomap {
+    background-color: #E87EA1;  
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    width: 40%;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 0.3rem;
+}
+#container-line {
+    padding-top: 30px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.line {
+    width: 80%;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, #FFEAE7, black, #FFEAE7);
+}
+/* ---- FIN PAGE MAP ---- */
