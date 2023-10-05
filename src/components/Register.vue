@@ -20,8 +20,6 @@ const response = reactive({
 
 const pwd = reactive({
     password_message: null,
-    isdisabled: true,
-    class: "cursor-not-allowed"
 })
 
 const login = ({ email, password }) => {
@@ -68,20 +66,14 @@ const register = ({ email, password }) => {
 const password_check = ({ first, second }) => {
     if(!password_complexity(first)) {
         pwd.password_message = "the password is weak (Minimum eight characters, at least one letter and one number)"
-        pwd.isdisabled= true
-        pwd.class = "cursor-not-allowed"
         return false
     } pwd.password_message = "the password is strong !"
     if(second === undefined) return false
     if(first === second) {
         pwd.password_message = "the passwords are matching !"
-        pwd.isdisabled = false
-        pwd.class = "cursor-pointer"
         return true
     } else {
         pwd.password_message = "matching error !"
-        pwd.isdisabled= true
-        pwd.class = "cursor-not-allowed"
         return false
     }
 }
@@ -95,9 +87,12 @@ const password_complexity = (password) => {
 <template>
     <Header></Header>
     <div class="flex justify-center items-center w-full h-screen">
-        <div class="border-slate-100 border rounded-md p-5 shadow-xl space-y-10 w-[30%]">
+        <div class="border border-black rounded-md p-5 shadow-xl space-y-10 w-[30%]">
             <h1 class="text-black text-xl">Register / SigIn</h1>
-            <div class="flex flex-col space-y-5 text-black">
+            <form
+            @submit="register({ email: mail, password: secondpassword })"
+            onsubmit="return false"
+            class="flex flex-col space-y-5 text-black">
                 <div class="flex flex-col">
                     <label for="">Mail</label>
                     <input 
@@ -125,9 +120,6 @@ const password_complexity = (password) => {
                     <label for=""></label>
                     <button
                     type="submit"
-                    :disabled="pwd.isdisabled"
-                    :class="pwd.class"
-                    v-on:click="register({ email: mail, password: secondpassword })"
                     class="border border-black p-1 rounded-md hover:bg-black hover:text-white transition-all ease-in-out duration-300"
                     >Register</button>
                 </div>
@@ -139,7 +131,7 @@ const password_complexity = (password) => {
                         <a v-on:click="go('login')"
                         class="text-blue-700 hover:text-blue-800 cursor-pointer">here</a></p>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </template>

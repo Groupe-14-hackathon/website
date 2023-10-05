@@ -10,8 +10,6 @@ const response = reactive({
 
 const mail = reactive({
     message: null,
-    isdisabled: true,
-    class: "cursor-not-allowed"
 })
 
 const update_email = ({ newEmail, password }) => {
@@ -40,13 +38,9 @@ const check_mail = ({ first, second }) => {
     if(second === undefined) return false
     if(first === second) {
         mail.message = "Emails are matching !"
-        mail.isdisabled = false
-        mail.class = "cursor-pointer"
         return true
     } else {
         mail.message = "matching error !"
-        mail.isdisabled= true
-        mail.class = "cursor-not-allowed"
         return false
     }
 }
@@ -59,7 +53,10 @@ const check_mail = ({ first, second }) => {
         <div class="w-[50%] h-[50vh] border border-red-500 rounded-md">
             <div class="h-full flex justify-center items-center flex-col">
                 <h1 class="text-center my-10 text-2xl">Update email</h1>
-                <div class="flex flex-col space-y-5 w-[50%]">
+                <form 
+                @submit="update_email({ newEmail: email, password })"
+                onsubmit="return false"
+                class="flex flex-col space-y-5 w-[50%]">
                     <div class="flex flex-col items-center">
                         <label class="w-full" for="email">New email</label>
                         <input
@@ -85,16 +82,14 @@ const check_mail = ({ first, second }) => {
                     </div>
                     <div>
                         <button 
-                        :disabled="mail.isdisabled"
                         :class="mail.class"
-                        v-on:click="update_email({ newEmail: email, password })"
                         class="p-1 border rounded-md border-red-500 hover:bg-red-500 transition-all" 
                         type="submit">Update</button>
                     </div>
                     <div>
                         {{ response.message }}
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
