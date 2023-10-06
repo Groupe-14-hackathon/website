@@ -2,7 +2,7 @@
 import { reactive } from 'vue';
 import VueCookies from 'vue-cookies'
 
-const host = 'https://api-yfestival.onrender.com/'
+const host = 'https://api-yfestival.onrender.com'
 
 const response = reactive({
     message: null,

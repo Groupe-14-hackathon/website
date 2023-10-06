@@ -10,7 +10,7 @@ const go = (route) => {
     router.push(route)
 }
 
-const host = 'https://api-yfestival.onrender.com/'
+const host = 'https://api-yfestival.onrender.com'
 
 const response = reactive({
     message: null,
