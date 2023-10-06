@@ -50,6 +50,7 @@ export default createRouter({
         {
             path: '/billeterie',
             component: billeterie,
+            beforeEnter: [auth]
         },
         {
             path: '/map',

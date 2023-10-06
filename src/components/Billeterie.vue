@@ -1,7 +1,7 @@
 <script setup>
-import Header from "./Header.vue";
-import { reactive } from "vue";
-const host = "http://localhost:3000";
+import Header from './Header.vue';
+import { reactive } from 'vue';
+const host = 'https://api-yfestival.onrender.com/'
 
 const response = reactive({
   message: null,

@@ -23,22 +23,22 @@ const slides = [
 
 <template>
     <Header></Header>
-    <div class="w-full">
+    <div class="w-full h-full">
         <div class="video-container">
             <img class="top-image" :src="cloud">
             <video class="video" :src="video" loop muted autoplay type="video/mp4"></video>
             <img class="bottom-image" :src="cloud">
             <img class="bottom-image " :src="cloud">
         </div>
-        <div class="h-screen w-full text-black bg-gradient-to-b from-[#FFEAE7] to-purple-300">
+        <div class="h-full w-full text-black bg-gradient-to-b from-[#FFEAE7] to-purple-300">
             <h1 class="text-center text-3xl pb-10">News & Dates</h1>
-            <div class="w-full h-fit flex justify-center items-center">
-                <div class="w-[60%] flex space-y-reverse border border-black rounded-md">
+            <div class="w-full h-full flex justify-center items-center">
+                <div class="w-[50%] flex space-y-reverse border border-black rounded-md">
                     <div class="w-full border-r border-black">
                         <Carousel :wrap-around="true" :autoplay="2000">
                             <Slide v-for="slide in slides" :key="slide.id">
                                 <div class="carousel__item w-full h-[90vh]">
-                                    <h1 class="absolute font-powerG text-white text-8xl z-10 inset-0">{{ slide.title }}</h1>
+                                    <h1 class="absolute font-powerG text-white text-5xl z-10 inset-0">{{ slide.title }}</h1>
                                     <img
                                     class="w-full h-full brightness-50"
                                      :src="slide.img">
