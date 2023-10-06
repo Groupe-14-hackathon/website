@@ -11,7 +11,7 @@ const go = (route) => {
     router.push(route)
 }
 
-const host = 'http://localhost:3000'
+const host = 'https://api-yfestival.onrender.com/'
 
 const response = reactive({
     message: null,

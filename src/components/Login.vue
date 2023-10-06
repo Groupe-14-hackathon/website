@@ -10,7 +10,7 @@ const go = (route) => {
     router.push(route)
 }
 
-const host = 'http://localhost:3000'
+const host = 'https://api-yfestival.onrender.com/'
 
 const response = reactive({
     message: null,
@@ -44,7 +44,7 @@ const login = ({ email, password }) => {
 <template>
     <Header></Header>
     <div class="flex justify-center items-center w-full h-screen">
-        <div class="border border-black rounded-md p-5 shadow-xl space-y-10 w-[30%]">
+        <div class="border border-black rounded-md p-5 shadow-xl space-y-10 w-[80%] lg:w-[30%]">
             <h1 class="text-slate-800 text-xl">Login</h1>
             <form 
             @submit="login({ email, password })"

@@ -285,7 +285,10 @@ body {
         padding: 15px;
         position: absolute;
         width: 100%;
-        background-color: white;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: red;
+        background-color: #FFEAE7;
     }
     #container-header {
         display: flex;

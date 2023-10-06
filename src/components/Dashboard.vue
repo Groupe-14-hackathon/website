@@ -5,7 +5,6 @@ import { useRouter } from 'vue-router';
 
 import Header from './Header.vue';
 import Account from './dashboard/Account.vue'
-import Contact from './dashboard/Contact.vue'
 import Ticket from './dashboard/Ticket.vue'
 import Travel from './dashboard/Travel.vue'
 
@@ -47,7 +46,7 @@ const disconnect = () => {
                 </div>
                 <div class="pl-5">
                     <a 
-                    v-on:click="component.current = Contact"
+                    href="mailto:yfestival@contact.com"
                     class="cursor-pointer border-black hover:border-b">> Contact</a>
                 </div>
                 <div class="pl-5">
