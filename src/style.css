@@ -97,6 +97,7 @@
     .navbar {
         width: 100%;
         box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
+        background-color: white;
     }
 
     .nav-container {
@@ -107,8 +108,10 @@
     }
 
     .navbar .menu-items {
+        position: absolute;
         display: flex;
         background-color: #FFEAE7;
+        z-index: 10;
     }
 
     .navbar .nav-container li {
@@ -141,7 +144,7 @@
         width: 32px;
         top: 20px;
         left: 20px;
-        z-index: 5;
+        z-index: 15;
         opacity: 0;
         cursor: pointer;
     }
@@ -153,7 +156,7 @@
         position: absolute;
         top: 17px;
         left: 20px;
-        z-index: 2;
+        z-index: 101;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
