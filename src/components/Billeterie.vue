@@ -1,5 +1,39 @@
 <script setup>
 import Header from './Header.vue';
+import { reactive } from 'vue';
+const host = 'http://localhost:3000'
+
+const response = reactive({
+    message: null,
+    festivals: null
+})
+
+const getFestivals = () => {
+    fetch(`${host}/api/festival/list`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then((res) => {
+        res.json().then(({ data, error }) => {
+            if (data) {
+                response.message = data
+                response.festivals = data
+                console.log(data);
+            }
+            if (error) response.message = error
+            return
+        })
+    })
+    .catch((err) => {
+        err.json().then(({ message }) => {
+            response.message = message
+        })
+    })
+}
+
+getFestivals()
+
 </script>
 <template>
     <Header></Header>
@@ -7,6 +41,11 @@ import Header from './Header.vue';
     <div class="flex w-full space-x-reverse space-y-10">
         <section class="w-full flex justify-center items-center" id="event-details">
             <h2>Détails de l'événement</h2>
+            <select v-if="response.festivals" name="festival">
+                <option v-for="festival in response.festivals" :value="festival.id">
+                    {{ festival.nom }}
+                </option>
+            </select>
         </section>
         <section class="w-full flex justify-center items-center">
             <div class="flex justify-center items-center flex-col">
