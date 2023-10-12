@@ -2,7 +2,9 @@
 import { reactive } from 'vue';
 import VueCookies from 'vue-cookies'
 
-const host = 'https://api-yfestival.onrender.com'
+const { API_HOST_URL, VITE_API_LOCAL_URL } = import.meta.env
+
+const host = API_HOST_URL || VITE_API_LOCAL_URL
 
 const response = reactive({
     message: null,
@@ -11,22 +13,23 @@ const response = reactive({
 })
 
 const getFestival = (id) => {
+    const token = VueCookies.get('token')
+
     fetch(`${host}/api/festival/${id}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         },
     }).then((res) => {
         res.json().then(({ message, error, data }) => {
             if (data) {
-                console.log(data);
                 const {
                     nom,
                     date
                 } = data
                 response.message = message
                 response.data.push({ nom, date })
-                console.log(response.data);
             }
             if (error) response.message = error
             return

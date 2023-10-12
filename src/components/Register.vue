@@ -11,7 +11,9 @@ const go = (route) => {
     router.push(route)
 }
 
-const host = 'https://api-yfestival.onrender.com'
+const { API_HOST_URL, VITE_API_LOCAL_URL } = import.meta.env
+
+const host = API_HOST_URL || VITE_API_LOCAL_URL
 
 const response = reactive({
     message: null,
@@ -87,7 +89,7 @@ const password_complexity = (password) => {
 <template>
     <Header></Header>
     <div class="flex justify-center items-center w-full h-screen">
-        <div class="border border-black rounded-md p-5 shadow-xl space-y-10 w-[30%]">
+        <div class="border border-black rounded-md p-5 shadow-xl space-y-10 w-[90%] lg:w-[30%]">
             <h1 class="text-black text-xl">Register / SigIn</h1>
             <form
             @submit="register({ email: mail, password: secondpassword })"

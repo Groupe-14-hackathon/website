@@ -2,38 +2,60 @@
 import Header from './Header.vue';
 import { reactive } from 'vue';
 import VueCookies from 'vue-cookies';
+import { useRouter } from 'vue-router';
 
-const host = 'http://localhost:3000'
+
+const { API_HOST_URL, VITE_API_LOCAL_URL } = import.meta.env
+
+const host = API_HOST_URL || VITE_API_LOCAL_URL
 const response = reactive({
     message: null,
     festivals: null,
-    ticket: null
+    tickets: [],
 });
 
+const router = useRouter()
+
+const go = (route) => {
+    router.push(route)
+}
+
 const buyTicket = ({ festivalId = 1, amount }) => {
+    if (amount > 1) {
+        response.message = "L'achat de plusieurs tickets n'est pas encore supporté"
+        return
+    }
     const id = VueCookies.get('id')
-    const transaction = "valid"
+    const token = VueCookies.get('token')
+    const transaction = true
     fetch(`${host}/api/ticket/buy`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({ transaction, FestivalId: festivalId, UserId: id, amount }),
     })
         .then((res) => {
-            res.json().then(({ message, error, ticket }) => {
+            res.json().then(({ message, error, ticket, tickets }) => {
+                if (tickets) {
+                    response.message = message;
+                    tickets.forEach(one => {
+                        response.tickets.push(one);
+                    });
+                    return
+                }
                 if (ticket) {
                     response.message = message;
-                    response.ticket = ticket;
+                    response.tickets.push(ticket);
+                    return
                 }
                 if (error) response.message = error;
                 return;
             });
         })
         .catch((err) => {
-            err.json().then(({ message }) => {
-                response.message = message;
-            });
+            response.message = err.message;
         });
 }
 
@@ -65,34 +87,43 @@ getFestivals();
 </script>
 <template>
     <Header></Header>
-    <h1 class="billeterieTitle">🎫 TICKETING 🎫</h1>
-    <div 
-    v-if="response.festivals" id="container-allticketing">
-        <div 
-        v-for="festival in response.festivals"
-        id="container-ticketing"
-        class="mb-5">
-            <div id="event-details">
-                <div id="container-events">
-                    <h2>{{ festival.nom }}</h2>
-                </div>
-                <p class="text-center">{{ festival.date }}</p>
-                <img src="/src/assets/festival.jpg" />
-            </div>
-            <div class="container-ticketing">
-                <form 
-                @submit="buyTicket({ festivalId, amount })"
-                onsubmit="return false"
-                id="nb-button">
-                    <label for="quantity">Number of tickets :</label>
-                    <input v-model="amount" type="number" id="quantity" min="0" required />
-                    <select hidden v-model="festivalId">
-                        <option selected :value="festival.id"></option>
-                    </select>
-                    <div id="container-buttonsubmit">
-                        <button class="buttonsubmit" type="submit">ACHETER</button>
+    <div v-if="response.tickets.length == 0">
+        <h1 class="billeterieTitle">🎫 TICKETING 🎫</h1>
+        <div v-if="response.festivals" id="container-allticketing">
+            <div v-for="festival in response.festivals" id="container-ticketing" class="mb-5">
+                <div id="event-details">
+                    <div id="container-events">
+                        <h2>{{ festival.nom }}</h2>
                     </div>
-                </form>
+                    <p class="text-center">{{ festival.date }}</p>
+                    <img src="/src/assets/festival.jpg" />
+                </div>
+                <div class="container-ticketing">
+                    <form @submit="buyTicket({ festivalId: festival.id, amount })" onsubmit="return false" id="nb-button">
+                        <label for="quantity">Number of tickets :</label>
+                        <input v-model="amount" type="number" id="quantity" min="0" required />
+                        <div id="container-buttonsubmit">
+                            <button class="buttonsubmit" type="submit">ACHETER</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-xl text-red-500 font-bold" v-if="response.message">
+            {{ response.message }}
+        </div>
+    </div>
+    <div v-else>
+        <h1 class="billeterieTitle">Confirmation d'achat</h1>
+        <div class="flex justify-center items-center flex-col space-y-10">
+            <h1>Merci d'avoir acheter un billet, voici un recapitulatif de votre commande:</h1>
+            <div class="w-fit">
+                <div v-for="ticket in response.tickets">
+                    <p class="border border-red-500 rounded-md p-2">Vous avez un ticket pour {{ response.festivals[ticket.FestivalId - 1].nom }} le {{ response.festivals[ticket.FestivalId - 1].date }}</p>
+                </div>
+                <p>
+                    Vous pouvez retrouver tout vos tickets <a class="cursor-pointer text-blue-700" v-on:click="go('dashboard')">ici</a>
+                </p>
             </div>
         </div>
     </div>

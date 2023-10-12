@@ -33,7 +33,7 @@ const slides = [
         <div class="h-full w-full text-black bg-gradient-to-b from-[#FFEAE7] to-purple-300">
             <h1 class="text-center text-3xl pb-10">News & Dates</h1>
             <div class="w-full h-full flex justify-center items-center">
-                <div class="w-[50%] flex space-y-reverse border border-black rounded-md">
+                <div class="w-[90%] lg:w-[80%] 2xl:w-[50%]  flex space-y-reverse border border-black rounded-md">
                     <div class="w-full border-r border-black">
                         <Carousel :wrap-around="true" :autoplay="2000">
                             <Slide v-for="slide in slides" :key="slide.id">

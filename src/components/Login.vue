@@ -10,20 +10,28 @@ const go = (route) => {
     router.push(route)
 }
 
-const host = 'https://api-yfestival.onrender.com'
+const { API_HOST_URL, VITE_API_LOCAL_URL } = import.meta.env
+
+const host = API_HOST_URL || VITE_API_LOCAL_URL
 
 const response = reactive({
     message: null,
 })
 
 const login = ({ email, password }) => {
+    response.message = "connecting..."
     fetch(`${host}/api/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
-    }).then((res) => {
+    })
+    .catch((err) => {
+        response.message = err.message;
+    })
+    
+    .then((res) => {
         res.json().then(({ message, data, token }) => {
             response.message = message
             if(token && data) {
@@ -31,11 +39,6 @@ const login = ({ email, password }) => {
                 VueCookies.set('id' , data, "1h") 
                 go('dashboard')
             }
-        })
-    })
-    .catch((err) => {
-        err.json().then(({ message }) => {
-            response.message = message
         })
     })
 }
