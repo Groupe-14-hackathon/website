@@ -7,7 +7,7 @@ import { useRouter } from 'vue-router';
 
 const { API_HOST_URL, VITE_API_LOCAL_URL } = import.meta.env
 
-const host = API_HOST_URL || VITE_API_LOCAL_URL
+const host = "https://api-yfestival.onrender.com"
 const response = reactive({
     message: null,
     festivals: null,
