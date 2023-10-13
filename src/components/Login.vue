@@ -10,6 +10,8 @@ const go = (route) => {
     router.push(route)
 }
 
+const h = env.API_HOST_URL
+
 const { API_HOST_URL, VITE_API_LOCAL_URL } = import.meta.env
 
 const host ="https://api-yfestival.onrender.com"
@@ -20,7 +22,7 @@ const response = reactive({
 
 const login = ({ email, password }) => {
     response.message = "connecting..."
-    fetch(`${host}/api/login`, {
+    fetch(`${h}/api/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
