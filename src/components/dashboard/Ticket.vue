@@ -51,8 +51,9 @@ const getTicket = () => {
         res.json()
         .then(({ message, error, tickets }) => {
             if (tickets) {
+                console.log(tickets);
                 tickets.forEach(ticket => {
-                    getFestival(ticket.id)
+                    getFestival(ticket.FestivalId)
                 });
                 response.message = message
                 response.tickets = tickets
@@ -72,7 +73,7 @@ getTicket()
     <div class="w-full h-[90vh] flex justify-center items-center">
         <div class="space-y-5">
             <h1 class="text-2xl">Your ticket(s)</h1>
-            <div class="space-y-5" v-if="response.tickets">
+            <div class="space-y-5" v-if="response.tickets.length > 0">
                 <div class="border border-red-500 rounded-md p-2" v-for="ticket in response.tickets">
                     <p v-if="response.data">Vous avez un ticket pour {{ response.data[ticket.id-1].nom }} le {{ response.data[ticket.id-1].date }}</p>
                 </div>
