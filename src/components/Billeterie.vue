@@ -69,7 +69,6 @@ const getFestivals = () => {
         .then((res) => {
             res.json().then(({ data, error }) => {
                 if (data) {
-                    response.message = data;
                     response.festivals = data;
                 }
                 if (error) response.message = error;
