@@ -1,6 +1,7 @@
 <script setup>
 import { reactive } from 'vue'
 import VueCookies from 'vue-cookies'
+import { useRouter } from 'vue-router';
 
 const { API_HOST_URL, VITE_API_LOCAL_URL } = import.meta.env
 
@@ -10,9 +11,17 @@ const response = reactive({
     message: null,
 })
 
+const router = useRouter()
+
 const mail = reactive({
     message: null,
 })
+
+const disconnect = () => {
+    VueCookies.remove('token')
+    router.push('login')
+}
+
 
 const update_email = ({ newEmail, password }) => {
     const token = VueCookies.get('token')
@@ -28,6 +37,10 @@ const update_email = ({ newEmail, password }) => {
     }).then((res) => {
         res.json().then(({ message }) => {
             response.message = message
+            setTimeout(() => {
+                disconnect()
+            }, 1000);
+            
         })
     }).catch((err) => {
         err.json().then(({ message }) => {
@@ -52,13 +65,13 @@ const check_mail = ({ first, second }) => {
 
 <template>
     <div class="w-full h-full flex justify-center">
-        <div class="w-[50%] h-[50vh] border border-red-500 rounded-md">
+        <div class="w-[50%] border border-red-500 rounded-md">
             <div class="h-full flex justify-center items-center flex-col">
                 <h1 class="text-center my-10 text-2xl">Update email</h1>
                 <form 
                 @submit="update_email({ newEmail: email, password })"
                 onsubmit="return false"
-                class="flex flex-col space-y-5 w-[50%]">
+                class="flex flex-col space-y-5 w-[50%] h-full">
                     <div class="flex flex-col items-center">
                         <label class="w-full" for="email">New email</label>
                         <input

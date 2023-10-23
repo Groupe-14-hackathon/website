@@ -1,6 +1,7 @@
 <script setup>
 import { reactive } from 'vue'
 import VueCookies from 'vue-cookies'
+import { useRouter } from 'vue-router';
 
 const { API_HOST_URL, VITE_API_LOCAL_URL } = import.meta.env
 
@@ -9,6 +10,14 @@ const host ="https://api-yfestival.onrender.com"
 const response = reactive({
     message: null,
 })
+
+const router = useRouter()
+
+const disconnect = () => {
+    VueCookies.remove('token')
+    router.push('register')
+}
+
 
 const delete_account = ({ password }) => {
     const token = VueCookies.get('token')
@@ -24,6 +33,9 @@ const delete_account = ({ password }) => {
     }).then((res) => {
         res.json().then(({ message }) => {
             response.message = message
+            setTimeout(() => {
+                disconnect()
+            }, 1000);
         })
     }).catch((err) => {
         err.json().then(({ message }) => {
@@ -36,7 +48,7 @@ const delete_account = ({ password }) => {
 
 <template>
     <div class="w-full h-full flex justify-center">
-        <div class="w-[50%] h-[50vh] border border-red-500 rounded-md">
+        <div class="w-[50%] border border-red-500 rounded-md">
             <div class="h-full flex justify-center items-center flex-col">
                 <h1 class="text-center my-10 text-2xl">Delete account</h1>
                 <form 

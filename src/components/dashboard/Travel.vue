@@ -1,5 +1,5 @@
 <template>
     <div class="w-full h-full">
-        Travel
+        Not available
     </div>
 </template>

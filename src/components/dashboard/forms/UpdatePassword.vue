@@ -1,6 +1,7 @@
 <script setup>
 import { reactive } from 'vue'
 import VueCookies from 'vue-cookies'
+import { useRouter } from 'vue-router';
 
 const { API_HOST_URL, VITE_API_LOCAL_URL } = import.meta.env
 
@@ -13,6 +14,14 @@ const response = reactive({
 const pwd = reactive({
     password_message: null,
 })
+
+const router = useRouter()
+
+const disconnect = () => {
+    VueCookies.remove('token')
+    router.push('login')
+}
+
 
 const password_check = ({ first, second }) => {
     if(!password_complexity(first)) {
@@ -48,6 +57,9 @@ const update_password = ({ newPassword, password }) => {
     }).then((res) => {
         res.json().then(({ message }) => {
             response.message = message
+            setTimeout(() => {
+                disconnect()
+            }, 1000);
         })
     }).catch((err) => {
         err.json().then(({ message }) => {
@@ -60,7 +72,7 @@ const update_password = ({ newPassword, password }) => {
 
 <template>
     <div class="w-full h-full flex justify-center">
-        <div class="w-[50%] h-[50vh] border border-red-500 rounded-md">
+        <div class="w-[50%] border border-red-500 rounded-md">
             <div class="h-full flex justify-center items-center flex-col">
                 <h1 class="text-center my-10 text-2xl">Update password</h1>
                 <form 
